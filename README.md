@@ -12,7 +12,7 @@ npm i
 npm run cypress:open
 ```
 
-if Cypress installed at folder level
+### if Cypress installed at folder level
 
 ```
 npx run cypress:open
