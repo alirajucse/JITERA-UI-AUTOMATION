@@ -24,7 +24,7 @@ npx run cypress:open
 npm run cypress:run
 ```
 
-if Cypress installed at folder level
+### if Cypress installed at folder level
 
 ```
 npx run cypress:run
