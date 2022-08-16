@@ -1,0 +1,19 @@
+{
+  "name": "jitera-ui-automation",
+  "version": "1.0.0",
+  "description": "Jitera UI Tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ali",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.4.0",
+    "cypress": "^9.5.4",
+    "cypress-localstorage-commands": "^2.2.0"
+  },
+  "dependencies": {
+    "typescript": "^4.6.3"
+  }
+}
