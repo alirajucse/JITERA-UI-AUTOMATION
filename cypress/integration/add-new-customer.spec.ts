@@ -52,11 +52,27 @@ describe("Add a new customer with all the neccessary information", () => {
     customerRegSuccess.verifyEmail(email);
   });
 
-  //it("Click on checkout button", () => {});
+  it("Verify submission form not possible with input empty form data", () => {
+    customerPage.clickOnNewCustomer();
+    customerPage.clickSubmitButton();
+    cy.on("window:alert", (txt) => {
+      //Mocha assertions
+      expect(txt).to.contains("please fill all fields");
+    });
+    cy.on("window:confirm", () => true);
+  });
   /**
    *
    */
-  //it("Add a new address, fill in the address form", () => {});
+  it("Verify Reset button working correctly", () => {
+    customerPage.fillCustomerName(name);
+    customerPage.fillCity(city);
+    customerPage.fillState(state);
+    customerPage.clickResetButton();
+    cy.get("input[name='name']").should("have.value", "");
+    cy.get("input[name='city']").should("have.value", "");
+    cy.get("input[name='state']").should("have.value", "");
+  });
   /**
    *
    */

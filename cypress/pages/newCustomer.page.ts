@@ -1,6 +1,5 @@
 export class CustomerPage {
   clickOnNewCustomer() {
-    //cy.wait(3000); // Wait until captcha loaded.
     cy.get("a[href='addcustomerpage.php']").click({
       force: true,
     });
@@ -11,7 +10,6 @@ export class CustomerPage {
   }
 
   selectGender() {
-    //cy.wait(3000); // Wait until captcha loaded.
     cy.get("input[value='m']").click({
       force: true,
     });
@@ -50,8 +48,13 @@ export class CustomerPage {
   }
 
   clickSubmitButton() {
-    //cy.wait(3000); // Wait until captcha loaded.
     cy.get("input[value='Submit']").click({
+      force: true,
+    });
+  }
+
+  clickResetButton() {
+    cy.get("input[value='Reset']").click({
       force: true,
     });
   }
