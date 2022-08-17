@@ -6,7 +6,7 @@ import { CustomerRegSuccessPage } from "../pages/customerRegistrationSuccess.pag
 import { getRandomValue } from "../common/utils";
 
 var date = faker.date
-  .birthdate({ min: 1900, max: 2000, mode: "year" })
+  .birthdate({ min: 1950, max: 2000, mode: "year" })
   .toISOString()
   .substring(0, 10);
 
