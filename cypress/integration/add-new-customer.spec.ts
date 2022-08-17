@@ -3,19 +3,32 @@ import { LoginPage } from "../pages/login.page";
 import { CustomerPage } from "../pages/newCustomer.page";
 import { faker } from "@faker-js/faker";
 import { CustomerRegSuccessPage } from "../pages/customerRegistrationSuccess.page";
+import { getRandomValue } from "../common/utils";
 
-var name = faker.name.fullName();
 var date = faker.date
   .birthdate({ min: 1900, max: 2000, mode: "year" })
   .toISOString()
   .substring(0, 10);
-var address = faker.address.streetAddress();
-var city = faker.address.city();
-var state = faker.address.state();
-var pin = faker.datatype.number({ min: 100000 }).toString();
-var mobileNumber = faker.phone.number("501######");
-var email = faker.internet.email();
-var password = faker.internet.password();
+
+const [
+  customerName,
+  customerAddress,
+  customerCity,
+  customerState,
+  customerPin,
+  customerMobile,
+  customerEmail,
+  customerPassword,
+] = [
+  getRandomValue("name", { length: 5 }),
+  getRandomValue("address", { length: 15 }),
+  getRandomValue("city", { length: 8 }),
+  getRandomValue("state", { length: 5 }),
+  getRandomValue("pin", { length: 6 }),
+  getRandomValue("mobileNumber", { length: 10 }),
+  getRandomValue("email", { length: 10, domain: "@jitera.com" }),
+  getRandomValue("password", { length: 10 }),
+];
 
 describe("Add a new customer with all the neccessary information", () => {
   const customerPage = new CustomerPage();
@@ -24,16 +37,16 @@ describe("Add a new customer with all the neccessary information", () => {
 
   it("Add a new customer", () => {
     customerPage.clickOnNewCustomer();
-    customerPage.fillCustomerName(name);
+    customerPage.fillCustomerName(customerName);
     customerPage.selectGender();
     customerPage.fillDateOfBirth(date);
-    customerPage.fillAddress(address);
-    customerPage.fillCity(city);
-    customerPage.fillState(state);
-    customerPage.fillPin(pin);
-    customerPage.fillMobileNumber(mobileNumber);
-    customerPage.fillEmail(email);
-    customerPage.fillPassword(password);
+    customerPage.fillAddress(customerAddress);
+    customerPage.fillCity(customerCity);
+    customerPage.fillState(customerState);
+    customerPage.fillPin(customerPin);
+    customerPage.fillMobileNumber(customerMobile);
+    customerPage.fillEmail(customerEmail);
+    customerPage.fillPassword(customerPassword);
     customerPage.clickSubmitButton();
   });
   /**
@@ -41,15 +54,15 @@ describe("Add a new customer with all the neccessary information", () => {
    */
   it("Verify newly created customer data added correctly", () => {
     customerRegSuccess.verifySucessMessage();
-    customerRegSuccess.verifyCustomerName(name);
+    customerRegSuccess.verifyCustomerName(customerName);
     customerRegSuccess.verifyGender();
     customerRegSuccess.verifyDateOfBirth(date);
-    customerRegSuccess.verifyAddress(address);
-    customerRegSuccess.verifyCity(city);
-    customerRegSuccess.verifyState(state);
-    customerRegSuccess.verifyPin(pin);
-    customerRegSuccess.verifyMobileNumber(mobileNumber);
-    customerRegSuccess.verifyEmail(email);
+    customerRegSuccess.verifyAddress(customerAddress);
+    customerRegSuccess.verifyCity(customerCity);
+    customerRegSuccess.verifyState(customerState);
+    customerRegSuccess.verifyPin(customerPin);
+    customerRegSuccess.verifyMobileNumber(customerMobile);
+    customerRegSuccess.verifyEmail(customerEmail);
   });
 
   it("Verify submission form not possible with input empty form data", () => {
@@ -65,9 +78,9 @@ describe("Add a new customer with all the neccessary information", () => {
    *
    */
   it("Verify Reset button working correctly", () => {
-    customerPage.fillCustomerName(name);
-    customerPage.fillCity(city);
-    customerPage.fillState(state);
+    customerPage.fillCustomerName(customerName);
+    customerPage.fillCity(customerCity);
+    customerPage.fillState(customerState);
     customerPage.clickResetButton();
     cy.get("input[name='name']").should("have.value", "");
     cy.get("input[name='city']").should("have.value", "");
